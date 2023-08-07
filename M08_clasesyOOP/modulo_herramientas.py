@@ -117,3 +117,6 @@ class Herramientas_lista_mod:
             number = number * self.__factorial(number - 1)
         
         return number
+    
+    if __name__ == '__main__':
+        pass

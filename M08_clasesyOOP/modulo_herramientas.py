@@ -1,7 +1,15 @@
 class Herramientas_lista_mod:
 
-    def __init__(self, lista_numeros):
-        self.lista_numeros = lista_numeros
+    def __init__(self, lista):
+        print("Dato de entrada: ", lista)
+        if lista == None:
+            self.lista_numeros = []
+            raise ValueError("Debe suministrar una lista, se creo lista vacia")
+        elif (type(lista) != list):
+            self.lista_numeros = []
+            raise ValueError('Se ha creado una lista vacía. Se esperaba una lista de núemeros enteros')  
+        else:
+            self.lista_numeros = lista
 
 
     def verifica_primo(self):

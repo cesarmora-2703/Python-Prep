@@ -1,15 +1,18 @@
 class Herramientas_lista_mod:
 
-    def __init__(self, lista):
-        print("Dato de entrada: ", lista)
-        if lista == None:
-            self.lista_numeros = []
-            raise ValueError("Debe suministrar una lista, se creo lista vacia")
-        elif (type(lista) != list):
-            self.lista_numeros = []
-            raise ValueError('Se ha creado una lista vacía. Se esperaba una lista de núemeros enteros')  
-        else:
-            self.lista_numeros = lista
+    def __init__(self, lista = []):
+        try:
+            if (type(lista) != list):
+                self.lista_numeros = []
+                raise ValueError('Se ha creado una lista vacía. Se esperaba una lista de núemeros enteros')  
+            elif lista == None:
+                raise ValueError("No se suministro una lista")
+            else:
+                self.lista_numeros = lista
+        except TypeError:
+            print('Error')
+        finally:
+            print('No se suministro argumento de entrada valido, intentar con otro dato')
 
 
     def verifica_primo(self):

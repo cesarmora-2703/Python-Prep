@@ -1,26 +1,29 @@
 class Herramientas_lista_mod:
 
     def __init__(self, lista = []):
-        try:
-            if (type(lista) != list):
-                self.lista_numeros = []
-                raise ValueError('Se ha creado una lista vacía. Se esperaba una lista de núemeros enteros')  
-            elif lista == None:
-                raise ValueError("No se suministro una lista")
-            else:
-                self.lista_numeros = lista
-        except TypeError:
-            print('Error')
-        finally:
-            print('No se suministro argumento de entrada valido, intentar con otro dato')
+
+        if (type(lista) != list):
+            self.lista_numeros = []
+            raise ValueError('Se ha creado una lista vacía. Se esperaba una lista de núemeros enteros')  
+        elif lista == None:
+            raise ValueError("No se suministro una lista")
+        else:
+            self.lista_numeros = lista
+
 
 
     def verifica_primo(self):
+        isPrimo = []
         for num in self.lista_numeros:
             if(self.__verifica_primo(num)):
+                isPrimo.append(True)
                 print(f'El elemento {num} es primo.')
             else:
                 print(f'El elemento {num} no es primo.')
+                isPrimo.append(False)
+        
+        return isPrimo
+        
 
     def __verifica_primo(self, num):
         if num < 2:
@@ -42,8 +45,8 @@ class Herramientas_lista_mod:
                 times = timesItem
                 which_one = item
             checked_items.append(item)
-    
-        return print(f'El valor modal es {which_one} y se repite {times} veces.')
+        print(f'El valor modal es {which_one} y se repite {times} veces.')   
+        return (which_one, times)
 
 
     def __convert_to_Centigrade(self, valor, entrada):
@@ -76,9 +79,16 @@ class Herramientas_lista_mod:
         
     
     def conversion_grados(self, origen, destino):
+        gradosConv = []
+        if (type(origen) != str or type(destino) != str):
+            print("Se espera k, f, o c")
+            return None
+
         for temp in self.lista_numeros:
-            tempC = self.__conversion_grados(temp, origen, destino)
-            print(f'{temp} grados º{origen.upper()} son {tempC} grados º{destino.upper()}')
+            tempConv = self.__conversion_grados(temp, origen, destino)
+            gradosConv.append(round(tempConv, 1))
+            print(f'{temp} grados º{origen.upper()} son {round(tempConv,1)} grados º{destino.upper()}')
+        return gradosConv
 
     def __conversion_grados(self, valor, entrada, salida ):
         '''
@@ -113,8 +123,14 @@ class Herramientas_lista_mod:
 
 
     def factorial(self):
+        factoriales = []
         for num in self.lista_numeros:
-            print(f'El factorial de {num} es {self.__factorial(num)}')
+            factNum = self.__factorial(num)
+            print(f'El factorial de {num} es {factNum}')
+            factoriales.append(factNum)
+        
+        return factoriales
+    
 
     def __factorial(self, number):
         '''
